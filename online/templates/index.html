@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HdM Chatbot</title>
+    <script>
+        let modelStarted = false;
+
+        // Once the user sends a message, this function sends the message to the server
+        async function sendMessage() {
+            let message = document.getElementById("messageInput").value;
+            if (message) {
+                await fetch('/send', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ message })
+                });
+                document.getElementById("messageInput").value = '';
+                loadMessages();
+            }
+        }
+        
+        // This fetches the stored messages on the server and displays them 
+        async function loadMessages() {
+            let response = await fetch('/messages');
+            let data = await response.json();
+            let messageBox = document.getElementById("messages");
+            messageBox.innerHTML = data.messages.map(msg => `<p>${msg}</p>`).join('');
+        }
+
+        // Function to start the model
+        async function startModel() {
+            if (!modelStarted) {
+                let response = await fetch('/start_model', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' }
+                });
+
+                let result = await response.json();
+                alert(result.status);
+
+                if (result.status === "Model initialized") {
+                    modelStarted = true;
+                    document.getElementById("startModelBtn").disabled = true;
+                }
+            }
+        }
+
+        setInterval(loadMessages, 1000);
+    </script>
+</head>
+<body onload="loadMessages()">
+    <h1>HdM Chatbot</h1>
+    <p>
+        Dies ist das Bachelorprojekt von Anjo Weddewer aw181 für die Hochschule der Medien. 
+        Alle Nachrichten die geschrieben werden, werden gespeichert und später ausgewertet. 
+        Um die Anonymität jedes Nutzers zu gewährleisten, werden keine weiteren Daten gespeichert.
+
+        
+    </p>
+
+    <button id="startModelBtn" onclick="startModel()">Start Model</button>
+
+    <div id="messages" style="border:1px solid #000; height:400px; overflow:auto;"></div>
+    <input type="text" id="messageInput" placeholder="Type your message...">
+    <button onclick="sendMessage()">Senden</button>
+</body>
+</html>
