@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HdM Chatbot</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1000px;
+            margin: 20px auto;
+            text-align: center;
+        }
+
+        #messages {
+            border: 1px solid #000;
+            height: 400px;
+            overflow-y: auto;
+            padding: 10px;
+            text-align: left;
+            max-width: 100%;
+        }
+
+        .input-container {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            max-width: 100%;
+        }
+
+        #messageInput {
+            width: 100%-4px;
+            padding: 0px;
+            font-size: 16px;
+            resize: none;
+            min-height: 50px;
+        }
+
+        #sendButton {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            background-color: blue;
+            color: white;
+            border: none;
+            cursor: pointer;
+            margin-top: 5px;
+        }
+
+        #sendButton:disabled {
+            background-color: gray;
+            cursor: not-allowed;
+        }
+    </style>
+    <script>
+        async function checkModelStatus() {
+            let response = await fetch('/model_status');
+            let data = await response.json();
+
+            if (data.initialized) {
+                document.getElementById("statusMessage").innerText = "Model is ready!";
+                document.getElementById("messageInput").disabled = false;
+                document.getElementById("sendButton").disabled = false;
+            } else {
+                document.getElementById("statusMessage").innerText = "Starting model...";
+                setTimeout(checkModelStatus, 2000);  // Check again in 2 seconds
+            }
+        }
+
+        async function sendMessage() {
+            let message = document.getElementById("messageInput").value;
+            let sendButton = document.getElementById("sendButton");
+
+            if (message) {
+                sendButton.disabled = true;
+                let response = await fetch('/send', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ message })
+                });
+
+                let result = await response.json();
+
+                if (response.status === 503) {
+                    alert(result.error);
+                    sendButton.disabled = false;
+                } else {
+                    document.getElementById("messageInput").value = '';
+                    loadMessages();
+                }
+            }
+        }
+
+        async function waitForAnswer() {
+            let responseReady = false;
+            let maxChecks = 20;
+            let checks = 0;
+
+            while (!responseReady && checks < maxChecks) {
+                let response = await fetch('/messages');
+                let data = await response.json();
+                let messageBox = document.getElementById("messages");
+
+                messageBox.innerHTML = data.messages.map(msg => `<p>${msg}</p>`).join('');
+                messageBox.scrollTop = messageBox.scrollHeight;
+
+                if (data.messages.length > 1 && data.messages[data.messages.length - 1].startsWith("Antwort:")) {
+                    responseReady = true;
+                    document.getElementById("sendButton").disabled = false;
+                }
+
+                checks++;
+                await new Promise(resolve => setTimeout(resolve, 3000));
+            }
+
+            if (!responseReady) {
+                document.getElementById("sendButton").disabled = false;
+            }
+        }
+
+        async function loadMessages() {
+            let response = await fetch('/messages');
+            let data = await response.json();
+            let messageBox = document.getElementById("messages");
+            messageBox.innerHTML = data.messages.map(msg => `<p>${msg}</p>`).join('');
+            messageBox.scrollTop = messageBox.scrollHeight;
+        }
+
+        setInterval(loadMessages, 2000); // Auto-refresh messages
+        window.onload = checkModelStatus;  // Start checking model status on page load
+    </script>
+</head>
+<body>
+    <h1>HdM Chatbot</h1>
+    <p>
+        Dies ist das Bachelorprojekt von Anjo Weddewer aw181 für die Hochschule der Medien. 
+        <br>Alle Nachrichten die geschrieben werden, werden gespeichert und später ausgewertet. 
+        <br>Um die Anonymität jedes Nutzers zu gewährleisten, werden keine weiteren Daten gespeichert.
+        <br>Die generierung der Antwort kann teilweise etwas länger dauern (~1min). Wenn mehrere gerade gleichzeitig schreiben, kann sich dies noch verlängern.
+    </p>
+
+    <p id="statusMessage">Starting model...</p>
+
+    <div id="messages" style="border:1px solid #000; height:400px; overflow:auto;"></div>
+    <div class="input-container">
+        <input type="text" id="messageInput" placeholder="Type your message..." disabled>
+        <button id="sendButton" onclick="sendMessage()" disabled>Senden</button>
+    </div>
+
+</body>
+</html>

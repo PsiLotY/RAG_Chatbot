@@ -1,3 +1,8 @@
+/pdf_data
+/pdfs
+/website_data
+/chroma_storage
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
