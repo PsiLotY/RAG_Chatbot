@@ -51,6 +51,56 @@
             background-color: gray;
             cursor: not-allowed;
         }
+
+        .rating-buttons {
+            margin-top: 20px;
+        }
+
+        .rating-button {
+            padding: 10px 20px;
+            margin: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: lightgray;
+            border: none;
+            color: black;
+        }
+
+        .rating-button:disabled {
+            background-color: gray;
+            cursor: not-allowed;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0,0,0);
+            background-color: rgba(0,0,0,0.4);
+            padding-top: 60px;
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 5% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 500px;
+            text-align: center;
+        }
+
+        .modal-button {
+            padding: 10px 20px;
+            margin: 10px;
+            font-size: 16px;
+            cursor: pointer;
+        }
     </style>
     <script>
         async function checkModelStatus() {
@@ -87,6 +137,7 @@
                 } else {
                     document.getElementById("messageInput").value = '';
                     loadMessages();
+                    enableRatingButtons();
                 }
             }
         }
@@ -126,8 +177,49 @@
             messageBox.scrollTop = messageBox.scrollHeight;
         }
 
+        function showModal() {
+            document.getElementById("myModal").style.display = "block";
+        }
+
+        function hideModal() {
+            document.getElementById("myModal").style.display = "none";
+        }
+
+        async function handleOption(option) {
+            console.log("Option chosen:", option);
+            await fetch('/set_option', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ option })
+            });
+            hideModal();
+        }
+
+        function enableRatingButtons() {
+            let buttons = document.getElementsByClassName("rating-button");
+            for (let button of buttons) {
+                button.disabled = false;
+            }
+        }
+
+        async function submitRating(rating) {
+            await fetch('/submit_rating', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ rating })
+            });
+            let buttons = document.getElementsByClassName("rating-button");
+            for (let button of buttons) {
+                button.disabled = true;
+            }
+        }    
+        
         setInterval(loadMessages, 2000); // Auto-refresh messages
-        window.onload = checkModelStatus;  // Start checking model status on page load
+        window.onload = function() {
+            checkModelStatus();
+            showModal();
+        }
+
     </script>
 </head>
 <body>
@@ -145,6 +237,30 @@
     <div class="input-container">
         <input type="text" id="messageInput" placeholder="Type your message..." disabled>
         <button id="sendButton" onclick="sendMessage()" disabled>Senden</button>
+    </div>
+
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <h2>Welche Art Nutzer bist du?</h2>
+            <button class="modal-button" onclick="handleOption('random_User')">unabhängiger Nutzer</button>
+            <button class="modal-button" onclick="handleOption('HdM_Student')">HdM Student</button>
+            <button class="modal-button" onclick="handleOption('AI_Expert')">KI Experte</button>
+        </div>
+    </div>
+
+
+    <p>Wie zufrieden bist du mit der Antwort?</p>
+    <div class="rating-buttons">
+        <button class="rating-button" onclick="submitRating(1)" disabled>1</button>
+        <button class="rating-button" onclick="submitRating(2)" disabled>2</button>
+        <button class="rating-button" onclick="submitRating(3)" disabled>3</button>
+        <button class="rating-button" onclick="submitRating(4)" disabled>4</button>
+        <button class="rating-button" onclick="submitRating(5)" disabled>5</button>
+        <button class="rating-button" onclick="submitRating(6)" disabled>6</button>
+        <button class="rating-button" onclick="submitRating(7)" disabled>7</button>
+        <button class="rating-button" onclick="submitRating(8)" disabled>8</button>
+        <button class="rating-button" onclick="submitRating(9)" disabled>9</button>
+        <button class="rating-button" onclick="submitRating(10)" disabled>10</button>
     </div>
 
 </body>

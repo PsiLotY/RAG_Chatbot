@@ -4,8 +4,10 @@
 import threading
 import uuid
 from datetime import datetime
+from time import time
 from flask import Flask, render_template, request, jsonify, session
 from rag import RAG
+from chroma_functions import ChromaDB
 
 app = Flask(__name__)
 app.secret_key = "secrete"
@@ -16,6 +18,7 @@ RAG_MODEL = None
 PROCESSING_USERS = {}
 LOG_FILE = "chat_log.txt"
 
+chromadb = ChromaDB()
 
 def initialize_model():
     """Initialize the RAG model in a background thread."""
@@ -42,15 +45,46 @@ def model_status():
     """Check if the model is initialized."""
     return jsonify({"initialized": MODEL_INITIALIZED})
 
-def log_interaction(user_id: str, message: str, response: str, source: str):
+def log_interaction(user_id: str, message: str, response: str, source: str, duration: float):
     """Log the each query and response to a file."""
     with open(LOG_FILE, "a", encoding="utf-8") as file:
         file.write(datetime.now().strftime("%Y-%m-%d %H:%M:%S") + "\n")
-        file.write(f"User {user_id}: {message}\n")
+        file.write(f"Selected User: {session['user_option']}\n")
+        file.write(f"User: {user_id}\n")
+        file.write(f"Duration: {duration:.2f} seconds\n")
+        distance = chromadb.get_last_distance()
+        file.write(f"Document distance: {distance}\n")
+        file.write(f"Query: {message}\n")
         file.write(f"Response: {response}\n")
         file.write(f"Source: {source}\n\n")
         file.write("-" * 50 + "\n\n")
 
+@app.route("/submit_rating", methods=["POST"])
+def submit_rating():
+    """_summary_
+
+    Returns:
+        _type_: _description_
+    """
+    data = request.json
+    rating = data.get("rating")
+    user_id = session.get("user_id")
+    if not user_id:
+        return jsonify({"error": "User ID not found in session"}), 400
+
+    with open(LOG_FILE, "a", encoding="utf-8") as file:
+        file.write(f"User {user_id} rated the response: {rating}/10\n")
+        file.write("-" * 50 + "\n\n")
+
+    return jsonify({"status": "success"})
+
+@app.route("/set_option", methods=["POST"])
+def set_option():
+    """Set the user option in the session."""
+    data = request.json
+    option = data.get("option")
+    session["user_option"] = option
+    return jsonify({"status": "success"})
 
 def process_message(user_id: str, message: str) -> None:
     """Process a user message and generate a response."""
@@ -58,7 +92,11 @@ def process_message(user_id: str, message: str) -> None:
         return
 
     PROCESSING_USERS[user_id] = True
+
+    start_time = time()
     answer, source_url = RAG_MODEL.generate_text(query=message)
+    end_time = time()
+    duration = end_time - start_time
 
     # irrelevant because of send?
     if user_id not in MESSAGES_PER_USER:
@@ -66,7 +104,7 @@ def process_message(user_id: str, message: str) -> None:
 
     MESSAGES_PER_USER[user_id].append(f"Antwort: {answer}")
     MESSAGES_PER_USER[user_id].append(f"Die generierte Antwort hat diese Quelle genutzt: {source_url}")
-    log_interaction(user_id, message, answer, source_url)
+    log_interaction(user_id, message, answer, source_url, duration)
     PROCESSING_USERS[user_id] = False
 
 

@@ -17,8 +17,8 @@ class ChromaDB:
     """A class to interact with the ChromaDB database.
     This is a singleton, so that it can be accessed anywhere in the code.
     """
-
     _instance = None  # Store the single instance of ChromaDB
+    last_distance = 0.0
 
     def __new__(
         cls, collection_name: str = "hdm_collection", storage_path: str = "./chroma_storage"
@@ -115,9 +115,17 @@ class ChromaDB:
         documents = results.get("documents", [[]])[0]
         metadatas = results.get("metadatas", [[]])[0]
         distances = results.get("distances", [[]])[0]
-
+        self.last_distance = distances[0]
         log.info("Closest document found: %s", metadatas)
         return [
             {"document": doc, "metadata": meta, "distance": dist}
             for doc, meta, dist in zip(documents, metadatas, distances)
         ]
+
+    def get_last_distance(self) -> float:
+        """Returns the distance of the last query.
+
+        Returns:
+            float: The distance of the last query.
+        """
+        return self.last_distance

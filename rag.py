@@ -65,7 +65,7 @@ class RAG:
                 temperature=0.7,
                 top_p=0.8,  # sampling rate for next word prediciton. randomly picks a word of a group of words which cumulative propability are top_p
                 # repetition_penalty=1.1,  # penalize words that are already in the text
-                max_new_tokens=500,  # Reduce token count to save memory
+                max_new_tokens=2000,  # Reduce token count to save memory
                 attention_mask=input_ids.attention_mask,
                 pad_token_id=pad_token_id,
                 eos_token_id=self.tokenizer.eos_token_id,
