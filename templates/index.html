@@ -106,13 +106,17 @@
         async function checkModelStatus() {
             let response = await fetch('/model_status');
             let data = await response.json();
+            let messageInput = document.getElementById("messageInput");
+            let sendButton = document.getElementById("sendButton");
 
             if (data.initialized) {
                 document.getElementById("statusMessage").innerText = "Model is ready!";
-                document.getElementById("messageInput").disabled = false;
-                document.getElementById("sendButton").disabled = false;
+                messageInput.disabled = false;
+                sendButton.disabled = false;
             } else {
                 document.getElementById("statusMessage").innerText = "Starting model...";
+                messageInput.disabled = true;
+                sendButton.disabled = true;
                 setTimeout(checkModelStatus, 2000);  // Check again in 2 seconds
             }
         }
@@ -227,8 +231,9 @@
     <p>
         Dies ist das Bachelorprojekt von Anjo Weddewer aw181 für die Hochschule der Medien. 
         <br>Alle Nachrichten die geschrieben werden, werden gespeichert und später ausgewertet. 
-        <br>Um die Anonymität jedes Nutzers zu gewährleisten, werden keine weiteren Daten gespeichert.
+        <br>Um die Anonymität jeder nutzenden Person zu gewährleisten, werden keine IP-Adressen gespeichert.
         <br>Die generierung der Antwort kann teilweise etwas länger dauern (~1min). Wenn mehrere gerade gleichzeitig schreiben, kann sich dies noch verlängern.
+        <br>Da sich der Chatbot auf die Information der Hochschule der Medien bezieht, fragt bitte über Themen die annähernd damit zu tun haben, oder versucht aktiv ihn kaputt zu machen.
     </p>
 
     <p id="statusMessage">Starting model...</p>

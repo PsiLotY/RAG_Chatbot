@@ -24,6 +24,7 @@ class RAG:
         current_memory()
         quantization_config = BitsAndBytesConfig(
             load_in_4bit=True,
+            # load_in_8bit=True,
             bnb_4bit_compute_dtype=torch.float16,  # Use FP16 for compute instead of FP32
         )
         self.tokenizer = AutoTokenizer.from_pretrained(tokenizer_name)
@@ -31,6 +32,7 @@ class RAG:
             model_name,
             device_map="auto",
             quantization_config=quantization_config,
+            trust_remote_code=True,
         )
         current_memory()
         log.info("Initialized model: %s", model_name)
