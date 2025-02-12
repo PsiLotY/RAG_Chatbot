@@ -2204,3 +2204,56 @@ Source: https://www.hdm-stuttgart.de/studieninteressierte/info/infoveranstaltung
 User 4d1ebc3c-fc0b-4228-9cb2-29309be266d8 rated the response: 3/10
 --------------------------------------------------
 
+2025-02-12 21:49:27
+Selected User: HdM_Student
+User: 3bf927a6-2c21-46e6-b899-36798ecee839
+Duration: 285.99 seconds
+Document distance: 0.7107079029083252
+Query: Worum geht es in dem Studiengang Medieninformatik?
+Response: 
+
+In diesem Studiengang erwerben die Studenten eine anwendungsorientierte Informatikausbildung, die ihnen ermöglicht, auch jenseits der Medienindustrie als vollwertiger Informatiker zu arbeiten. Der Medienbezug macht die Spezialität an der HdM aus.
+
+Die Hochschule der Medien Stuttgart ist eine der renommiertesten Hochschulen für das Mediensektor in Deutschland. Die Hochschule bietet ein breites Spektrum an Studiengängen, darunter auch den Studiengang Medieninformatik.
+
+Die Hochschule der Medien Stuttgart ist eine der renommiertesten Hochschulen für das Mediensektor in Deutschland. Die Hochschule bietet ein breites Spektrum an Studiengängen, darunter auch den Studiengang Medieninformatik.
+
+Die Hochschule der Medien Stuttgart ist eine der renommiertesten Hochschulen für das Mediensektor in Deutschland. Die Hochschule bietet ein breites Spektrum an Studiengängen, darunter auch den Studiengang Medieninformatik.
+
+Die Hochschule der Medien Stuttgart ist eine der renommiertesten Hochschulen für das Mediensektor in Deutschland. Die Hochschule bietet ein breites Spektrum an Studiengängen, darunter auch den Studiengang Medieninformatik.
+
+Die Hochschule der Medien Stuttgart ist eine der renommiertesten Hochschulen für das Mediensektor in Deutschland. Die Hochschule bietet ein breites Spektrum an Studiengängen, darunter auch den Studiengang Medieninformatik.
+
+Die Hochschule der Medien Stuttgart ist eine der renommiertesten Hochschulen für das Mediensektor in Deutschland. Die Hochschule bietet ein breites Spektrum an Studiengängen, darunter auch den Studiengang Medieninformatik.
+
+Die Hochschule der Medien Stuttgart ist eine der renommiertesten Hochschulen für das Mediensektor in Deutschland. Die Hochschule bietet ein breites Spektrum an Studiengängen, darunter auch den Studiengang Medieninformatik.
+
+Die Hochschule der Medien Stuttgart ist eine der renommiertesten Hochschulen für das Mediensektor in Deutschland. Die Hochschule bietet ein breites Spektrum an Studiengängen, darunter auch den Studiengang Medieninformatik.
+
+Die Hochschule der Medien Stuttgart ist eine der renommiertesten Hochschulen für das Mediensektor in Deutschland. Die Hochschule bietet ein breites Spektrum an Studiengängen, darunter auch den Studiengang Medieninformatik.
+
+Die Hochschule der Medien Stuttgart ist eine der renommiertesten Hochschulen für das Mediensektor in Deutschland. Die Hochschule bietet ein breites Spektrum an Studiengängen, darunter auch den Studiengang Medieninformatik.
+
+Die Hochschule der Medien Stuttgart ist eine der renommiertesten Hochschulen für das Mediensektor in Deutschland. Die Hochschule bietet ein breites Spektrum an Studiengängen, darunter auch den Studiengang Medieninformatik.
+Source: https://www.hdm-stuttgart.de/mi/infoszumstudium/studium/fragen_zum_studium
+
+--------------------------------------------------
+
+User 3bf927a6-2c21-46e6-b899-36798ecee839 rated the response: 2/10
+--------------------------------------------------
+
+An error occurred: This is a test error message.
+--------------------------------------------------
+
+An error occurred: This is a test error message.
+--------------------------------------------------
+
+An error occurred: This is a test error message.
+--------------------------------------------------
+
+An error occurred: This is a test error message.
+--------------------------------------------------
+
+An error occurred: This is a test error message.
+--------------------------------------------------
+

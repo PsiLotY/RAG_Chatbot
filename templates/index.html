@@ -117,7 +117,7 @@
                 document.getElementById("statusMessage").innerText = "Starting model...";
                 messageInput.disabled = true;
                 sendButton.disabled = true;
-                setTimeout(checkModelStatus, 2000);  // Check again in 2 seconds
+                setTimeout(checkModelStatus, 2000);
             }
         }
 
@@ -157,7 +157,7 @@
                 let messageBox = document.getElementById("messages");
 
                 messageBox.innerHTML = data.messages.map(msg => `<p>${msg}</p>`).join('');
-                messageBox.scrollTop = messageBox.scrollHeight;
+                // messageBox.scrollTop = messageBox.scrollHeight;
 
                 if (data.messages.length > 1 && data.messages[data.messages.length - 1].startsWith("Antwort:")) {
                     responseReady = true;
@@ -178,7 +178,7 @@
             let data = await response.json();
             let messageBox = document.getElementById("messages");
             messageBox.innerHTML = data.messages.map(msg => `<p>${msg}</p>`).join('');
-            messageBox.scrollTop = messageBox.scrollHeight;
+            // messageBox.scrollTop = messageBox.scrollHeight;
         }
 
         function showModal() {

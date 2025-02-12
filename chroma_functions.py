@@ -17,7 +17,7 @@ class ChromaDB:
     """A class to interact with the ChromaDB database.
     This is a singleton, so that it can be accessed anywhere in the code.
     """
-    _instance = None  # Store the single instance of ChromaDB
+    _instance = None 
     last_distance = 0.0
 
     def __new__(

@@ -3,9 +3,11 @@
 
 import threading
 import uuid
+import gc
 from datetime import datetime
 from time import time
 from flask import Flask, render_template, request, jsonify, session
+from torch import cuda
 from rag import RAG
 from chroma_functions import ChromaDB
 
@@ -13,7 +15,7 @@ app = Flask(__name__)
 app.secret_key = "secrete"
 
 MESSAGES_PER_USER = {}
-MODEL_INITIALIZED = False  # Track model status
+MODEL_INITIALIZED = False 
 RAG_MODEL = None
 PROCESSING_USERS = {}
 LOG_FILE = "chat_log.txt"
@@ -23,11 +25,11 @@ chromadb = ChromaDB()
 def initialize_model():
     """Initialize the RAG model in a background thread."""
     global RAG_MODEL, MODEL_INITIALIZED
-    MODEL_INITIALIZED = False  # Set to False while loading
+    MODEL_INITIALIZED = False 
     if RAG_MODEL is not None:
         del RAG_MODEL
-        import gc
         gc.collect()
+        cuda.empty_cache()
 
     RAG_MODEL = RAG(
         # model_name="deepseek-ai/DeepSeek-R1-Distill-Llama-8B",
@@ -35,7 +37,7 @@ def initialize_model():
         model_name="deepseek-ai/DeepSeek-V2-Lite-Chat",
         tokenizer_name="deepseek-ai/DeepSeek-V2-Lite-Chat",
     )
-    MODEL_INITIALIZED = True  # Set to True when ready
+    MODEL_INITIALIZED = True
     print("Model successfully initialized!")
 
 threading.Thread(target=initialize_model, daemon=True).start()
@@ -117,10 +119,9 @@ def process_message(user_id: str, message: str) -> None:
         with open(LOG_FILE, "a", encoding="utf-8") as file:
             file.write(f"An error occurred: {e}\n")
             file.write("-" * 50 + "\n\n")
-        MESSAGES_PER_USER[user_id].append("Sadly an Error occured. The model will restart now.")
 
+        MESSAGES_PER_USER[user_id].append("Leider ist ein Fehler aufgetreten. Das Model startet gerade neu. Bitte einmal F5 drücken oder die Seite neu laden.")
         initialize_model()
-
     finally:
         PROCESSING_USERS[user_id] = False
 

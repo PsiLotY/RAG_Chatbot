@@ -69,7 +69,6 @@ def is_allowed(url: str) -> bool:
     """
     for path in DISALLOWED_PATHS:
         if "*" in path:
-            # Match wildcard patterns
             regex_path = path.replace("*", ".*")
             if re.search(regex_path, url):
                 return False
@@ -97,7 +96,6 @@ def extract_domain_part(url: str) -> str:
         # Extract url query parameters after ?
         query = parsed_url.query.replace("&", "_").replace("=", "_") if parsed_url.query else ""
 
-        # Combine components
         filename = f"{base_domain}"
         if path:
             filename += f"_{path}"
@@ -106,7 +104,7 @@ def extract_domain_part(url: str) -> str:
 
         # Ensure filename is safe
         filename = re.sub(r'[<>:"/\\|?*]', "_", filename)
-        return filename or "default"  # Fallback if filename is empty
+        return filename or "default"
     except Exception as e:
         log.error("Error generating filename from URL %s: %s", url, e)
         return "default"
@@ -379,7 +377,7 @@ def crawl_website(start_url: str, continue_from_last=False, page_depth: int = No
     to_visit_set = set(to_visit)
     try:
         while to_visit:
-            iteration_start_time = time.time()  # Start timing the iteration
+            iteration_start_time = time.time()
             current_url = to_visit.popleft()
             to_visit_set.remove(current_url)
 

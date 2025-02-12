@@ -25,7 +25,7 @@ class RAG:
         quantization_config = BitsAndBytesConfig(
             load_in_4bit=True,
             # load_in_8bit=True,
-            bnb_4bit_compute_dtype=torch.float16,  # Use FP16 for compute instead of FP32
+            bnb_4bit_compute_dtype=torch.float16,
         )
         self.tokenizer = AutoTokenizer.from_pretrained(tokenizer_name)
         self.model = AutoModelForCausalLM.from_pretrained(
@@ -67,7 +67,7 @@ class RAG:
                 temperature=0.7,
                 top_p=0.8,  # sampling rate for next word prediciton. randomly picks a word of a group of words which cumulative propability are top_p
                 # repetition_penalty=1.1,  # penalize words that are already in the text
-                max_new_tokens=2000,  # Reduce token count to save memory
+                max_new_tokens=200,  
                 attention_mask=input_ids.attention_mask,
                 pad_token_id=pad_token_id,
                 eos_token_id=self.tokenizer.eos_token_id,
@@ -106,7 +106,7 @@ class RAG:
         chroma = ChromaDB("hdm_collection")
         results = chroma.get_closest_document(query)
         if results:
-            retrieved_doc = results[0]  # Get the most relevant document
+            retrieved_doc = results[0]
             document_text = retrieved_doc["document"]
             source_url = retrieved_doc["metadata"].get("url", "Quelle nicht verfügbar")
             
