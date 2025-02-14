@@ -3,9 +3,13 @@
 #SBATCH --output rag-flask-app.out
 #SBATCH --partition gpu
 #SBATCH --gpus 2
-#SBATCH --time 10:00:00
+#SBATCH --time 24:00:00
 #SBATCH --mail-type=END,FAIL
 #SBATCH --mail-user=aw181@hdm-stuttgart.de
+#SBATCH --cpus-per-task=4
+#SBATCH --mem=16G
+#SBATCH --nodelist=ada
+
 
 set -euo pipefail
 
@@ -58,11 +62,11 @@ if [[ "$(hostname)" == "deeplearn" ]]; then
 fi
 
 run_as_user () {
-	enroot start --gpu --mount "${HOME}:${HOME}/mounted_home" --rw "${CONTAINER_IMAGE_NAME}" bash -c "$*"
+	enroot start --mount "${HOME}:${HOME}/mounted_home" --rw "${CONTAINER_IMAGE_NAME}" bash -c "$*"
 }
 
 run_as_root () {
-	enroot start --gpu --mount "${HOME}:${HOME}/mounted_home" --root --rw "${CONTAINER_IMAGE_NAME}" bash -c "$*"
+	enroot start --mount "${HOME}:${HOME}/mounted_home" --root --rw "${CONTAINER_IMAGE_NAME}" bash -c "$*"
 }
 
 if ! enroot list | grep -q -x "${CONTAINER_IMAGE_NAME}"; then
@@ -119,7 +123,7 @@ EOF
 echo "Starting VS Code Server on ${HOST}"
 echo -e "Connect using: \033[0;32m${OPEN_URL}\033[0m with password \033[0;32m${SERVER_PASSWORD}\033[0m"
 
-VSCODE_START_CMD="/opt/miniconda3/envs/BAp11/bin/python -m flask--app ${HOME}/mounted_home/RAG_Chatbot/webpage.py run"
+VSCODE_START_CMD="/opt/miniconda3/envs/BAp11/bin/python -m flask --app ${HOME}/mounted_home/RAG_Chatbot/webpage.py run"
 if ${ROOT}; then
 	run_as_root "${VSCODE_START_CMD}"
 else
