@@ -31,11 +31,11 @@ def logger(name: str):
 log = logger(__name__)
 
 
-def current_memory() -> None:
+def current_memory(message:str = "default") -> None:
     """A function to log the current memory usage of the GPU."""
     free, total = torch.cuda.mem_get_info()
     free, total = free / 1000000000, total / 1000000000
-    log.info(" used space %s, free space %s, total space %s in GB", total - free, free, total)
+    log.warn("%s:used space %s, free space %s, total space %s in GB", message, total - free, free, total)
 
 
 def create_directories_if_not_exist(*directories: str) -> None:

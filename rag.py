@@ -2,6 +2,7 @@
 """
 
 import torch
+import gc
 from transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig
 
 from utils import logger, current_memory
@@ -21,7 +22,8 @@ class RAG:
             model_name (str): The huggingface name of the model to be used.
             tokenizer_name (str): The huggingface name of the tokenizer to be used.
         """
-        current_memory()
+        current_memory("Model initialization")
+
         quantization_config = BitsAndBytesConfig(
             load_in_4bit=True,
             # load_in_8bit=True,
@@ -34,7 +36,7 @@ class RAG:
             quantization_config=quantization_config,
             trust_remote_code=True,
         )
-        current_memory()
+        current_memory("After Initializiation")
         log.info("Initialized model: %s", model_name)
 
     def generate_text(self, query: str):
@@ -58,7 +60,7 @@ class RAG:
             else self.tokenizer.eos_token_id
         )
         log.info("Generating an answer for the query: %s", query)
-        current_memory()
+        current_memory("Before generate")
 
         with torch.no_grad():
             output = self.model.generate(
@@ -77,7 +79,8 @@ class RAG:
         generated_text = self.tokenizer.decode(generated_tokens, skip_special_tokens=True)
         log.info("Question: %s", query)
         log.info("Answer: %s", generated_text)
-        current_memory()
+        current_memory("After generate")
+        torch.cuda.synchronize()
         torch.cuda.empty_cache()
         return generated_text, source_url
 
@@ -103,11 +106,18 @@ class RAG:
             },
             {"role": "user", "content": query},
         ]
-        chroma = ChromaDB("hdm_collection")
+        chroma = ChromaDB("hdm_collection", "./chroma_storage")
         results = chroma.get_closest_document(query)
         if results:
             retrieved_doc = results[0]
             document_text = retrieved_doc["document"]
+            token_count = retrieved_doc["metadata"]["token_count"]
+            max_doc_tokens = 1500
+            if token_count > max_doc_tokens:
+                log.info(f"Document too long ({token_count} tokens), truncating to {max_doc_tokens} tokens.")
+                words = document_text.split()
+                document_text = " ".join(words[:max_doc_tokens]) 
+                log.info(len(document_text.split()))
             source_url = retrieved_doc["metadata"].get("url", "Quelle nicht verfügbar")
             
             prompt.append(
@@ -124,3 +134,19 @@ class RAG:
 
         log.info("No corresponding document found.")
         return f"{prompt[0]['content']}\n{prompt[1]['content']}", None
+
+    def cleanup(self):
+        """Deletes the model and tokenizer from memory and clears the cache."""
+        if hasattr(self, "model"):
+            del self.model
+        if hasattr(self, "tokenizer"):
+            del self.tokenizer
+
+        gc.collect()  # Run garbage collection
+        torch.cuda.empty_cache()  # Clear unused memory in all GPUs
+
+        for i in range(torch.cuda.device_count()):  # Ensure all GPUs are cleared
+            torch.cuda.set_device(i)
+            torch.cuda.empty_cache()
+
+        log.info("Model and tokenizer deleted, GPU cache cleared.")

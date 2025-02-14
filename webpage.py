@@ -3,13 +3,17 @@
 
 import threading
 import uuid
+import os
 import gc
+import sys
 from datetime import datetime
-from time import time
+from time import time, sleep
 from flask import Flask, render_template, request, jsonify, session
 from torch import cuda
 from rag import RAG
 from chroma_functions import ChromaDB
+from utils import current_memory
+
 
 app = Flask(__name__)
 app.secret_key = "secrete"
@@ -20,25 +24,31 @@ RAG_MODEL = None
 PROCESSING_USERS = {}
 LOG_FILE = "chat_log.txt"
 
-chromadb = ChromaDB()
+print("current path", os.getcwd())
+new_path = os.path.join(os.getcwd(), "mounted_home/RAG_Chatbot")
+print(new_path)
+os.chdir(new_path)
+
+chromadb = ChromaDB("hdm_collection", "./chroma_storage")
+entries = chromadb.collection.get(include=["metadatas"])
+print("Amount of documents ",len(entries["ids"]))
+
 
 def initialize_model():
     """Initialize the RAG model in a background thread."""
     global RAG_MODEL, MODEL_INITIALIZED
-    MODEL_INITIALIZED = False 
-    if RAG_MODEL is not None:
-        del RAG_MODEL
-        gc.collect()
-        cuda.empty_cache()
+    print("Model initializing...")
+    MODEL_INITIALIZED = False  
+    try:
+        RAG_MODEL = RAG(
+            model_name="deepseek-ai/DeepSeek-V2-Lite-Chat",
+            tokenizer_name="deepseek-ai/DeepSeek-V2-Lite-Chat",
+        )
+        MODEL_INITIALIZED = True
+        print("Model successfully initialized!")
 
-    RAG_MODEL = RAG(
-        # model_name="deepseek-ai/DeepSeek-R1-Distill-Llama-8B",
-        # tokenizer_name="deepseek-ai/DeepSeek-R1-Distill-Llama-8B",
-        model_name="deepseek-ai/DeepSeek-V2-Lite-Chat",
-        tokenizer_name="deepseek-ai/DeepSeek-V2-Lite-Chat",
-    )
-    MODEL_INITIALIZED = True
-    print("Model successfully initialized!")
+    except Exception as e:
+        print(f"Model initialization failed: {e}")
 
 threading.Thread(target=initialize_model, daemon=True).start()
 
@@ -99,6 +109,7 @@ def process_message(user_id: str, message: str) -> None:
     """Process a user message and generate a response."""
     if PROCESSING_USERS.get(user_id, False):
         return
+    global RAG_MODEL, MODEL_INITIALIZED
 
     PROCESSING_USERS[user_id] = True
     try:
@@ -116,12 +127,26 @@ def process_message(user_id: str, message: str) -> None:
         log_interaction(user_id, message, answer, source_url, duration)
 
     except Exception as e:
+        MODEL_INITIALIZED = False  
+        print("exception ", e)
         with open(LOG_FILE, "a", encoding="utf-8") as file:
             file.write(f"An error occurred: {e}\n")
             file.write("-" * 50 + "\n\n")
 
-        MESSAGES_PER_USER[user_id].append("Leider ist ein Fehler aufgetreten. Das Model startet gerade neu. Bitte einmal F5 drücken oder die Seite neu laden.")
-        initialize_model()
+        MESSAGES_PER_USER[user_id].append(
+            "Wenn du das hier lesen kannst, hast dus geschafft. You broke it... Kontaktiere mich per mail oder nachricht hier: 01794697327 bitte damit ich mir das anschauen kann, fixen kann und neustarten kann. :'("
+        )
+        
+        current_memory("before deletion")
+        RAG_MODEL.cleanup()
+        del RAG_MODEL
+        cuda.synchronize()
+        cuda.empty_cache()
+        gc.collect()
+        sleep(5)
+        current_memory("after deletion")
+        
+        threading.Thread(target=initialize_model, daemon=True).start()
     finally:
         PROCESSING_USERS[user_id] = False
 
@@ -154,4 +179,4 @@ def get_messages():
     return jsonify({"messages": MESSAGES_PER_USER.get(user_id, [])})
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=6006, debug=True, use_reloader=False)
+    app.run(host="127.0.0.1", port=5000, debug=False, threaded=True)
