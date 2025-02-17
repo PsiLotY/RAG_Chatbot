@@ -1,0 +1,293 @@
+2025-02-14 18:28:40
+Selected User: random_User
+User: 282a5c24-767b-47e3-8f4b-3d20bcc869fb
+Duration: 18.97 seconds
+Document distance: 1.1994541883468628
+Query: Wenn ein Kasten mit einem Gas gefüllt ist, aber ein teil des Kastens von einer elastischen Membran getrennt nur Vakuum enthält. Warum wird keine Arbeit verrichtet, wenn das Gas in das Vakuum expandiert?
+Response: 
+
+Antwort:
+
+Die Arbeit, die im Zusammenhang mit dem Gasvolumen und dem Volumen des Vakuums verrichtet wird, ist das Produkt aus dem Druckunterschied zwischen dem Gas und dem Vakuum und dem Volumenänderungsgrad. Da sich das Volumen des Vakuums nicht ändert, wird keine Arbeit verrichtet.
+
+Die Formel für die Arbeit ist:
+
+\[ W = P \cdot \Delta V \]
+
+wobei \( P \) der Druck im Gaskasten ist und \( \Delta V \) die Volumenänderung des Vakuums ist. Wie oben erwähnt, ändert sich das Volumen des Vakuums nicht, daher ist \( \Delta V = 0 \), und somit ist die Arbeit \( W = 0 \).
+
+Source: https://www.hdm-stuttgart.de/studieninteressierte/info/gasthoerer
+
+--------------------------------------------------
+
+User 282a5c24-767b-47e3-8f4b-3d20bcc869fb rated the response: 8/10
+--------------------------------------------------
+
+2025-02-14 18:29:55
+Selected User: random_User
+User: 282a5c24-767b-47e3-8f4b-3d20bcc869fb
+Duration: 17.65 seconds
+Document distance: 1.1321699619293213
+Query: Warum tritt bei Bestrahlung eines Doppelspalts nur dann Interferenz auf wenn die Spalten nicht durch ein Messgerät beobachtet werden?
+Response: 
+
+Die Frage ist eine Fragestellung der Physik, die sich mit der Untersuchung von Interferenzmustern befasst, die durch die Wechselwirkung von Materiewellen (Photonen) mit sich selbst oder mit Objekten erzeugt werden. Interferenz ist ein grundlegendes Phänomen der Wellenphysik und tritt auf, wenn sich Wellen überlagern und ihre Amplituden (Höhe) kombiniert werden.
+
+Die Antwort auf die Frage ist jedoch nicht direkt auf eine physikalische Webseite oder eine wissenschaftliche Veröffentlichung zu finden, sondern basiert auf einer philosophischen Überlegung. Es handelt sich dabei um eine Interpretation des so genannten "Locke-Arguments". John Locke hat
+Source: https://www.hdm-stuttgart.de/science/view_beitrag?science_beitrag_ID=831
+
+--------------------------------------------------
+
+User 282a5c24-767b-47e3-8f4b-3d20bcc869fb rated the response: 10/10
+--------------------------------------------------
+
+2025-02-14 20:44:54
+Selected User: random_User
+User: 47161965-c83d-4922-b8ef-271d3b54a3ad
+Duration: 14.01 seconds
+Document distance: 1.174770474433899
+Query: Hallo!
+Response: 
+Ich habe eine Frage bezüglich der Datenschutz-Konformität der Datenerhebung und Weiterverarbeitung. Kann ich die volle Verantwortung für die Datenschutzkonformität selbst übernehmen und welche Rolle spielt die Hochschule der Medien Stuttgart bei der Erfüllung dieser Verantwortung?
+
+Die Hochschule der Medien Stuttgart stellt lediglich die Infrastruktur für die Umfragen zur Verfügung.
+Source: https://www.hdm-stuttgart.de/studierende/abteilungen/cld/HdMSurvey/files/HdMSurvey-Guide_2024-08.pdf
+
+--------------------------------------------------
+
+2025-02-14 20:47:08
+Selected User: random_User
+User: 47161965-c83d-4922-b8ef-271d3b54a3ad
+Duration: 3.01 seconds
+Document distance: 0.9950621128082275
+Query: wann wurde die Hochschule eröffnet?
+Response: 
+
+Die Hochschule der Medien Stuttgart wurde im Jahr 1991 gegründet.
+Source: https://www.hdm-stuttgart.de/unternehmen/careercenter/praktikumsstellen/internshipcontract.pdf
+
+--------------------------------------------------
+
+User 47161965-c83d-4922-b8ef-271d3b54a3ad rated the response: 2/10
+--------------------------------------------------
+
+2025-02-14 20:49:10
+Selected User: random_User
+User: 47161965-c83d-4922-b8ef-271d3b54a3ad
+Duration: 14.02 seconds
+Document distance: 0.8939355611801147
+Query: welche Studiengänge gibt es?
+Response: 
+
+Die Hochschule der Medien Stuttgart bietet derzeit vier Bachelorstudiengänge an:
+
+1. Medientechnik
+2. Bibliotheks- und Informationwesen
+3. Kommunikationsdesign
+4. Digitales Design
+
+Es gibt keine Masterstudiengänge.
+
+Es ist wichtig zu beachten, dass die Bewerbungsprozesse und die Häufigkeit von Studienplätzen variieren können. Es ist immer ratsam, die jeweilige Hochschule zu kontaktieren oder sich über die offizielle Website zu informieren, um die aktuellsten Informationen zu erhalten.
+Source: https://www.hdm-stuttgart.de/bdi/studieninteressierte/studium/fragen_zum_studium
+
+--------------------------------------------------
+
+User 47161965-c83d-4922-b8ef-271d3b54a3ad rated the response: 3/10
+--------------------------------------------------
+
+2025-02-14 20:51:07
+Selected User: random_User
+User: 47161965-c83d-4922-b8ef-271d3b54a3ad
+Duration: 16.97 seconds
+Document distance: 0.6912722587585449
+Query: wie lange dauert der Bachelor Studiengang Medieninformatik?
+Response: 
+Der Bachelor-Studiengang Medieninformatik an der hdm Stuttgart dauert in der Regel 6 Semester.
+
+Wie ist die Betreuung im Bachelor-Studiengang Medieninformatik?
+Die Betreuung im Bachelor-Studiengang Medieninformatik ist sehr persönlich. Die hochschule der medien hat ein Team von 16 Professorinnen und vielen wissenschaftlichen Mitarbeiterinnen, die darauf hinwirken, dass die Studierenden ihren persönlichen Studienverlauf finden und beraten. Durch das virtuelle und physische Training sowie die individuellen Tutorenarbeit werden die Studierenden im Bachelor-Studiengang Medieninformatik unterstützt.
+
+Wie hoch ist der numerus clausus (NC
+Source: https://www.hdm-stuttgart.de/mi/infoszumstudium/studium/fragen_zum_studium
+
+--------------------------------------------------
+
+User 47161965-c83d-4922-b8ef-271d3b54a3ad rated the response: 8/10
+--------------------------------------------------
+
+2025-02-14 20:53:01
+Selected User: random_User
+User: 47161965-c83d-4922-b8ef-271d3b54a3ad
+Duration: 16.57 seconds
+Document distance: 0.8102923631668091
+Query: wie sieht das besondere Aufnahmeverfahren beim Bachelor-Studiengang Print Media and packaging technologies aus?
+Response: 
+
+Bevor du dich für das Bachelor-Studiengang Print Media and packaging technologies beim HdM Stuttgart entscheidest, musst du die folgenden Schritte durchlaufen:
+
+1. Bewerbung auf der Online-Bewerbungsseite: Du musst deine Bewerbung online einreichen. Dazu benötigst du deine Schul- bzw. Universitätszeugnisse sowie möglicherweise deren deutsche Übersetzung.
+
+2. Online-Tests: Du musst die Online-Tests im Bereich Deutsch und Mathematik erfolgreich absolvieren.
+
+3. Online-Interview: Du wirst einen Online-Interviewtermin vereinbaren, in dem du deine Motivationen, dein Interesse am Studium und dein Ziel, nach der A
+Source: https://www.hdm-stuttgart.de/download/broschueren/sgang_flyer/PP7.pdf
+
+--------------------------------------------------
+
+User 47161965-c83d-4922-b8ef-271d3b54a3ad rated the response: 9/10
+--------------------------------------------------
+
+2025-02-14 22:01:27
+Selected User: random_User
+User: 5b8d33f8-90c6-40ed-9e4d-8f450a30bd8e
+Duration: 4.37 seconds
+Document distance: 0.8131705522537231
+Query: Wie viele Gebäude hat die Hochschule?
+Response: 
+Die Hochschule hat viele Gebäude, aber ich kann dir die Anzahl der Gebäude nicht nennen, da das unbekannt ist.
+Source: https://www.hdm-stuttgart.de/view_news?ident=news20211027154223
+
+--------------------------------------------------
+
+User 5b8d33f8-90c6-40ed-9e4d-8f450a30bd8e rated the response: 5/10
+--------------------------------------------------
+
+2025-02-14 22:02:27
+Selected User: random_User
+User: 5b8d33f8-90c6-40ed-9e4d-8f450a30bd8e
+Duration: 3.79 seconds
+Document distance: 1.102981686592102
+Query: Was gibt es in der Mensa?
+Response: 
+
+In der Mensa gibt es Essen und Getränke.
+Source: https://www.hdm-stuttgart.de/studierende/abteilungen/cld/HdMSurvey/files/HdMSurvey-Guide_2024-08.pdf
+
+--------------------------------------------------
+
+User 5b8d33f8-90c6-40ed-9e4d-8f450a30bd8e rated the response: 9/10
+--------------------------------------------------
+
+2025-02-14 22:02:56
+Selected User: random_User
+User: 5b8d33f8-90c6-40ed-9e4d-8f450a30bd8e
+Duration: 11.02 seconds
+Document distance: 0.9801726341247559
+Query: Welches Gericht gibt es am Montag in der Mensa?
+Response: 
+
+Zu der Frage nach dem Gericht gibt es keine relevante Informationen in der Quelle der HdM. Es ist wichtig zu beachten, dass die Datenbank der HdM spezialisierte Beratungsdienste und Informationen zur Verfügung stellt, die sich auf das Hochschulstudium und die berufliche Weiterbildung konzentriert. Deshalb ist es wahrscheinlich, dass die Frage nach dem Gericht in einer anderen Datenbank oder einer externen Quelle gefunden werden kann.
+Source: https://www.hdm-stuttgart.de/studierende/abteilungen/aaa/beratungstermin
+
+--------------------------------------------------
+
+User 5b8d33f8-90c6-40ed-9e4d-8f450a30bd8e rated the response: 5/10
+--------------------------------------------------
+
+2025-02-14 22:30:44
+Selected User: random_User
+User: 02b54e4d-19c4-4495-a825-f4348a200909
+Duration: 16.62 seconds
+Document distance: 0.7675274014472961
+Query: Ich möchte gern Mathe studieren. Was soll ich tun?
+Response: 
+
+Die Hochschule der Medien (HdM) bietet ein Studium der Medieninformatik an, bei dem keine vorkenntnisse im Bereich Mathematik benötigt werden. Stattdessen lernen die Studenten das Programmieren von Grund auf. Die Mathematik ist ein wesentlicher Teil des Grundstudiums der Medieninformatik. Die HdM hat eine enge Zusammenarbeit mit der Fachhochschule Esslingen, die die Mathematik-LK vorsieht. Wenn Sie sich für das Studium der Medieninformatik bewerben, wird Ihnen bei der Hochschule der Medien helfen, sich in diesem Bereich weiterzubilden und die Aufgaben selbstständig zu lösen.
+
+Ich muss nicht programmieren
+Source: https://www.hdm-stuttgart.de/mi/infoszumstudium/studium/fragen_zum_studium
+
+--------------------------------------------------
+
+User 02b54e4d-19c4-4495-a825-f4348a200909 rated the response: 6/10
+--------------------------------------------------
+
+2025-02-14 22:33:04
+Selected User: random_User
+User: 02b54e4d-19c4-4495-a825-f4348a200909
+Duration: 16.54 seconds
+Document distance: 0.8527412414550781
+Query: Hat die Uni ein Mathestudium?
+Response:  Nein, Mathestudium braucht man nicht. Aber es ist definitiv wichtig, denn es macht ein Drittel des Grundstudiums aus (Semester 1 und 差别2). Das fängt bei Oberstufenmathematik an und geht in Bereiche der diskreten Mathematik, die auch Leistungskursteilnehmern neu sein werden. Übungen und Tutoren helfen Ihnen, diese Themen zu verstehen und die Aufgaben zu lösen.
+
+Der Studiengang MIB bietet aktuell 46 Studienplätze pro Semester.
+
+Wie ist es mit der Betreuung? Sind Sie nicht nur einer von vielen? Ein Team von 16 Professoren und vielen wissenschaftlichen Mitarbeiterinnen freut sich darauf,
+Source: https://www.hdm-stuttgart.de/mi/infoszumstudium/studium/fragen_zum_studium
+
+--------------------------------------------------
+
+User 02b54e4d-19c4-4495-a825-f4348a200909 rated the response: 2/10
+--------------------------------------------------
+
+2025-02-14 22:34:09
+Selected User: random_User
+User: 02b54e4d-19c4-4495-a825-f4348a200909
+Duration: 5.05 seconds
+Document distance: 0.8939355611801147
+Query: Welche Studiengänge gibt es?
+Response: 
+
+Die Hochschule der Medien Stuttgart bietet Bachelor- und Masterstudiengänge in den Bereichen Journalismus, Kommunikationsdesign, Medientechnologie und Informationsdesign an.
+Source: https://www.hdm-stuttgart.de/bdi/studieninteressierte/studium/fragen_zum_studium
+
+--------------------------------------------------
+
+User 02b54e4d-19c4-4495-a825-f4348a200909 rated the response: 5/10
+--------------------------------------------------
+
+2025-02-14 22:35:08
+Selected User: random_User
+User: 02b54e4d-19c4-4495-a825-f4348a200909
+Duration: 16.53 seconds
+Document distance: 0.7486181259155273
+Query: Kannst du mir eine Liste an Studiengängen geben?
+Response: 
+
+Ja, hier ist eine Liste der verschiedenen Masterstudiengänge, die die Hochschule der Medien in Stuttgart anbietet:
+
+1. Animation und visuelle Effekte
+2. Design und Medientechnologie
+3. Digitale Kommunikation
+4. Film und Fernsehen
+5. Fotografie
+6. Immersive Medientechnologien
+7. Kulturmanagement und Kulturmanagement im digitalen Zeitalter
+8. Konzeptkunst
+9. Kunst und Medientechnologie
+10. Kunstgeschichte und Konservierung von Kulturgut
+11. Kulturwissenschaften
+1rt. Musik
+13. Performancekultur
+14. Produktionsdesign
+15. Produktdesign
+16. Public Relations und Werbung
+17. Realisation von inter
+Source: https://www.hdm-stuttgart.de/studieninteressierte/bewerber/bewerbung_master/faq
+
+--------------------------------------------------
+
+User 02b54e4d-19c4-4495-a825-f4348a200909 rated the response: 1/10
+--------------------------------------------------
+
+2025-02-14 22:37:03
+Selected User: random_User
+User: 02b54e4d-19c4-4495-a825-f4348a200909
+Duration: 15.60 seconds
+Document distance: 0.7778762578964233
+Query: Was mache ich im Studiengang "Bibliothek und digitale Information"?
+Response: 
+Im Studiengang "Bibliothek und digitale Information" lernst du, wie du Informationen und Medien effektiv nutzen kannst, um Menschen in Bibliotheken und Informationsinstitutionen zu unterstützen. Dabei werden die Grundlagen der Kommunikation, der Informationsbeschaffung, der Informationsvermittlung und der Informationsnutzung vermittelt. Zusätzlich werden die Schwerpunkte auf die Vermittlung von Kompetenzen und das Aufgreifen von Soft Skills gelegt.
+
+Im Studiengang "Bibliothek und digitale Information" lernst du:
+- die wichtigsten Informationsquellen und Informationssysteme zu nutzen
+- die Informationsbeschaffung und Informationsvermittlung zu organisieren
+- die Informationsnutzung und Informations
+Source: https://www.hdm-stuttgart.de/bdi
+
+--------------------------------------------------
+
+User 02b54e4d-19c4-4495-a825-f4348a200909 rated the response: 10/10
+--------------------------------------------------
+
