@@ -122,11 +122,11 @@ def extract_relevant_content(soup: BeautifulSoup) -> str:
     try:
         # List of potential tags to search for in priority order
         potential_main_tags = [
-            {"name": "main", "attrs": {"id": "content_wrapper"}},
-            {"name": "main", "attrs": {"id": "site-content"}},
-            {"name": "div", "attrs": {"id": "main-body"}},
-            {"name": "section", "attrs": {"id": "sp-main-body"}},
-            {"name": "div", "attrs": {"id": "main"}},
+            {"name": "main", "attrs": {"id": "content_wrapper"}}, # HDM
+            {"name": "main", "attrs": {"id": "site-content"}}, # VS
+            {"name": "div", "attrs": {"id": "main-body"}}, # 
+            {"name": "section", "attrs": {"id": "sp-main-body"}}, 
+            {"name": "div", "attrs": {"id": "main"}}, # omm
             {"name": "div", "attrs": {"class": "sc-gsTCUz bhdLno"}},
         ]
 
